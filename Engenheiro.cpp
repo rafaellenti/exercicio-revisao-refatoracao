@@ -1,11 +1,9 @@
-#include <string>
-#include "Empregado.hpp"
+#include "Engenheiro.hpp"
 
-class Engenheiro : public Empregado {
+void Engenheiro::imprimirAtributos (double horas) {
+    std::cout << "Nome: " << nome << std::endl;
+    std::cout << "Salario Mes: " << pagamentoMes(horas) << std::endl;
+    std::cout << "Projetos: " << projetos << std::endl;
+}
 
-  public:
-    std::string nome;  
-	int projetos;
-	
-};
 

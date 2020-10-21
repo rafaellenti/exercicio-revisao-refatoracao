@@ -1,64 +1,32 @@
-#include "Engenheiro.cpp"
-#include "Vendedor.cpp"
+#include "Engenheiro.hpp"
+#include "Empregado.hpp"
+#include "Vendedor.hpp"
+#include <vector>
 
 int main() {
+    std::vector<Empregado*> empregados;
+    empregados.push_back(new Engenheiro(35,"Joao Snow",3));
+    empregados.push_back(new Engenheiro(30,"Daniela Targaryen",1));
+    empregados.push_back(new Engenheiro(30,"Bruno Stark",2));
+    empregados.push_back(new Vendedor(20,5000,"Tonho Lannister"));
+    empregados.push_back(new Vendedor(25,3000,"Jose Mormont"));
+    empregados.push_back(new Vendedor(30,4000,"Sonia Stark"));
 
-  Engenheiro eng1;
-  eng1.nome = "Joao Snow";
-  eng1.salarioHora = 35;
-  eng1.projetos = 3; 
-  std::cout << "Nome: " << eng1.nome << std::endl;
-  std::cout << "Salario Mes: " << eng1.pagamentoMes(9.5) << std::endl;
-  std::cout << "Projetos: " << eng1.projetos << std::endl;
-  std::cout << std::endl;
-  
-  Engenheiro eng2;
-  eng2.nome = "Daniela Targaryen";
-  eng2.salarioHora = 30;
-  eng2.projetos = 1; 
-  std::cout << "Nome: " << eng2.nome << std::endl;
-  std::cout << "Salario Mes: " << eng2.pagamentoMes(8) << std::endl;
-  std::cout << "Projetos: " << eng2.projetos << std::endl;  
-  std::cout << std::endl;
-  
-  Engenheiro eng3;
-  eng3.nome = "Bruno Stark";
-  eng3.salarioHora = 30;
-  eng3.projetos = 2; 
-  std::cout << "Nome: " << eng3.nome << std::endl;
-  std::cout << "Salario Mes: " << eng3.pagamentoMes(8) << std::endl;
-  std::cout << "Projetos: " << eng3.projetos << std::endl;  
-  std::cout << std::endl;
-  
-  
-  Vendedor vend1;
-  vend1.nome = "Tonho Lannister";
-  vend1.salarioHora = 20;
-  vend1.quotaMensalVendas = 5000;
-  
-  std::cout << "Nome: " << vend1.nome << std::endl;
-  std::cout << "Salario Mes: " << vend1.pagamentoMes(6) << std::endl;  
-  std::cout << "Quota vendas: " << vend1.quotaTotalAnual() << std::endl;
-  std::cout << std::endl;
-  
-  Vendedor vend2;
-  vend2.nome = "Jose Mormont";
-  vend2.salarioHora = 25;
-  vend2.quotaMensalVendas = 3000;
-  
-  std::cout << "Nome: " << vend2.nome << std::endl;
-  std::cout << "Salario Mes: " << vend2.pagamentoMes(8) << std::endl;  
-  std::cout << "Quota vendas: " << vend2.quotaTotalAnual() << std::endl; 
-  std::cout << std::endl;  
-	
-  Vendedor vend3;
-  vend3.nome = "Sonia Stark";
-  vend3.salarioHora = 30;
-  vend3.quotaMensalVendas = 4000;
-  
-  std::cout << "Nome: " << vend3.nome << std::endl;
-  std::cout << "Salario Mes: " << vend3.pagamentoMes(8) << std::endl;  
-  std::cout << "Quota vendas: " << vend3.quotaTotalAnual() << std::endl;  
-  
-  return 0;	
+    for (int i=0; i<empregados.size(); i++) {
+        if (i != 0) 
+            std::cout << std::endl;
+        if (i == 0) {
+            empregados[i]->imprimirAtributos(9.5);
+        } else if (i == 1 || i == 2 || i == 4 || i == 5) {
+            empregados[i]->imprimirAtributos(8);
+        } else if (i == 3) {
+          empregados[i]->imprimirAtributos(6);
+        }
+    }
+
+    for (Empregado* emp : empregados)
+        delete emp;
+    empregados.clear();
+
+    return 0;	
 }
